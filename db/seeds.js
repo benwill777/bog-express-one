@@ -1,6 +1,6 @@
 require('dotenv').config()
 const mongoose = require('mongoose')
-const { Creature } = require('./db/schema')
+const { Creature } = require('./schema')
 
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI)

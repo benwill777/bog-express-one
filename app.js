@@ -15,15 +15,24 @@ db.on('error', err => {
 db.on('open', () => {
     console.log('Connected to MongoDB')
 })
-
 app.use(logger('dev'))
 app.use(bodyParser.json())
+
+app.use(express.static(`${__dirname}/client/build`))
+
+//below your api routes
+app.get('/*', (req, res) => {
+    res.sendFile(`${__dirname}/client/build/index.html`)
+})
+
 
 app.get('/', (req, res) => {
     res.send("Hello World")
 })
 
+
 const PORT = process.env.PORT || 3001
+console.log('app is up and running on port 3001')
 
 app.listen(PORT, () => {
     console.log('App is up and running on port ' + PORT)
